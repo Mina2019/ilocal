@@ -1,3 +1,4 @@
+
 # ==========================================================
 # iLocal
 # Local Business Advertising Platform
@@ -71,6 +72,33 @@ if page == "Home":
         st.button("Education", use_container_width=True)
         st.button("Real Estate", use_container_width=True)
         st.button("More", use_container_width=True)
+
+
+st.subheader("🏪 All Local Businesses")
+
+businesses = supabase.table("ilocal_businesses").select("*").execute()
+
+if businesses.data:
+
+    for business in businesses.data:
+
+        st.write("###", business["business_name"])
+
+        if business.get("business_type"):
+            st.write("Category:", business["business_type"])
+
+        if business.get("city"):
+            st.write("Location:", business["city"])
+
+        if business.get("description"):
+            st.write(business["description"])
+
+        st.divider()
+
+else:
+    st.info("No businesses registered yet.")
+
+    
 
 # ==========================================================
 # BROWSE ADS
