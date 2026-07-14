@@ -72,6 +72,59 @@ if page == "Home":
         st.button("Real Estate", use_container_width=True)
         st.button("More", use_container_width=True)
 
+    # ------------------------------------------------------
+    # Current Businesses
+    # ------------------------------------------------------
+
+    st.subheader("🏪 Current Local Businesses")
+
+    try:
+
+        businesses = (
+            supabase
+            .table("ilocal_businesses")
+            .select("*")
+            .execute()
+        )
+
+        if businesses.data:
+
+            for business in businesses.data:
+
+                st.write(
+                    "### " + business["business_name"]
+                )
+
+                if business.get("business_type"):
+                    st.write(
+                        "Category:",
+                        business["business_type"]
+                    )
+
+                if business.get("city"):
+                    st.write(
+                        "Location:",
+                        business["city"]
+                    )
+
+                if business.get("description"):
+                    st.write(
+                        business["description"]
+                    )
+
+                st.divider()
+
+        else:
+
+            st.info(
+                "No businesses registered yet."
+            )
+
+    except Exception as e:
+
+        st.error(e)
+
+        
 # ==========================================================
 # BROWSE ADS
 # ==========================================================
@@ -166,3 +219,6 @@ elif page == "Profile":
     st.header("Profile")
 
     st.info("User profile coming soon.")
+
+
+
