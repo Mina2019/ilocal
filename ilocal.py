@@ -1,4 +1,3 @@
-```python
 # ==========================================================
 # iLocal
 # Local Business Advertising Platform
@@ -167,4 +166,3 @@ elif page == "Profile":
     st.header("Profile")
 
     st.info("User profile coming soon.")
-```
