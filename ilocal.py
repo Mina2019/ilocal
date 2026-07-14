@@ -1,4 +1,3 @@
-```python
 # ==========================================================
 # iLocal
 # Local Business Advertising Platform
