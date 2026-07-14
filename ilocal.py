@@ -184,7 +184,120 @@ elif page == "My Ads":
 
     st.header("My Advertisements")
 
-    st.info("Your advertisements will appear here.")
+    # ------------------------------------------------------
+    # Check if any businesses exist
+    # ------------------------------------------------------
+
+    businesses = (
+        supabase
+        .table("ilocal_businesses")
+        .select("*")
+        .order("business_name")
+        .execute()
+    )
+
+    if not businesses.data:
+
+        st.warning(
+            "Please create your Business Profile first."
+        )
+
+        st.stop()
+
+    # ------------------------------------------------------
+    # Select Business
+    # ------------------------------------------------------
+
+    business_names = [
+        business["business_name"]
+        for business in businesses.data
+    ]
+
+    selected_business = st.selectbox(
+        "Select Your Business",
+        business_names
+    )
+
+    st.divider()
+
+    # ------------------------------------------------------
+    # Subscription
+    # ------------------------------------------------------
+
+    st.subheader("Subscription")
+
+    subscription_active = st.checkbox(
+        "Subscription Active (Temporary)"
+    )
+
+    if not subscription_active:
+
+        st.warning(
+            "Please subscribe on the Profile page before posting advertisements."
+        )
+
+        st.stop()
+
+    st.success("Subscription Active")
+
+    st.divider()
+
+    # ------------------------------------------------------
+    # Advertisement Form
+    # ------------------------------------------------------
+
+    st.subheader("Post Advertisement")
+
+    title = st.text_input("Title")
+
+    category = st.selectbox(
+        "Category",
+        [
+            "Restaurant",
+            "Home Services",
+            "Automotive",
+            "Health",
+            "Beauty",
+            "Education",
+            "Shopping",
+            "Other"
+        ]
+    )
+
+    description = st.text_area(
+        "Description"
+    )
+
+    price = st.number_input(
+        "Price",
+        min_value=0.0,
+        step=1.0
+    )
+
+    image = st.file_uploader(
+        "Photo",
+        type=["jpg", "jpeg", "png"]
+    )
+
+    if st.button("Post Advertisement"):
+
+        # Save advertisement to Supabase here later
+
+        st.success(
+            "Advertisement posted successfully."
+        )
+
+    st.divider()
+
+    # ------------------------------------------------------
+    # Current Advertisements
+    # ------------------------------------------------------
+
+    st.subheader("My Current Advertisements")
+
+    st.info(
+        "Your advertisements will appear here once the ads table is connected."
+    )
 
 # ==========================================================
 # MY BUSINESS
@@ -240,9 +353,51 @@ elif page == "My Business":
 
 elif page == "Profile":
 
-    st.header("Profile")
+    st.header("Business Subscription")
 
-    st.info("User profile coming soon.")
+    st.subheader("Current Plan")
+
+    st.info("Free Business Profile")
+
+    st.markdown("---")
+
+    st.subheader("Upgrade to Pro")
+
+    st.write(
+        """
+        **Pro Subscription**
+
+        • $100/month
+
+        • Up to 100 active advertisements
+
+        • Advertisements appear on Browse Ads
+
+        • Ability to edit and delete advertisements
+        """
+    )
+
+    st.markdown("---")
+
+    st.subheader("Stripe Subscription")
+
+    st.info(
+        "Stripe payment button will go here."
+    )
+
+    if st.button("Subscribe for $100/month"):
+
+        st.success(
+            "Redirect to Stripe (Coming Soon)"
+        )
+
+    st.markdown("---")
+
+    st.subheader("Subscription Status")
+
+    st.warning(
+        "Inactive"
+    )
 
 
 
