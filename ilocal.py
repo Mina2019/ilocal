@@ -176,17 +176,17 @@ elif page == "My Business":
 
     if st.button("Save Business"):
 
-    response = supabase.table("ilocal_businesses").insert({
-        "business_name": business_name,
-        "business_type": business_type,
-        "description": description,
-        "phone": phone,
-        "website": website,
-        "address": address,
-        "city": city
-    }).execute()
+        response = supabase.table("ilocal_businesses").insert({
+            "business_name": business_name,
+            "business_type": business_type,
+            "description": description,
+            "phone": phone,
+            "website": website,
+            "address": address,
+            "city": city
+        }).execute()
 
-    st.write(response)
+        st.write(response)
 
     st.success("Business profile saved.")
 
