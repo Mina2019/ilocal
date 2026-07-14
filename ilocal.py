@@ -227,8 +227,7 @@ elif page == "My Business":
                 }
             ).execute()
 
-            st.write(result.data)
-
+            
             st.success("Business saved successfully.")
 
         except Exception as e:
