@@ -196,6 +196,8 @@ elif page == "My Business":
 
     business_name = st.text_input("Business Name")
 
+    business_type = st.text_input("Business Type")
+
     phone = st.text_input("Phone")
 
     website = st.text_input("Website")
@@ -206,9 +208,32 @@ elif page == "My Business":
 
     description = st.text_area("Business Description")
 
+
     if st.button("Save Business"):
 
-        st.success("Business profile saved.")
+        try:
+
+            result = supabase.table(
+                "ilocal_businesses"
+            ).insert(
+                {
+                    "business_name": business_name,
+                    "business_type": business_type,
+                    "description": description,
+                    "phone": phone,
+                    "website": website,
+                    "address": address,
+                    "city": city
+                }
+            ).execute()
+
+            st.write(result.data)
+
+            st.success("Business saved successfully.")
+
+        except Exception as e:
+
+            st.error(e)
 
 # ==========================================================
 # PROFILE
