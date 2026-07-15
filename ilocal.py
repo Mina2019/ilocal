@@ -300,7 +300,7 @@ elif page == "My Ads":
     )
 
 # ==========================================================
-# MY BUSINESS
+# MY PROFILE
 # ==========================================================
 
 elif page == "My Business":
@@ -347,57 +347,37 @@ elif page == "My Business":
 
             st.error(e)
 
-# ==========================================================
-# PROFILE
-# ==========================================================
 
-elif page == "Profile":
-
-    st.header("Business Subscription")
-
-    st.subheader("Current Plan")
-
-    st.info("Free Business Profile")
-
-    st.markdown("---")
-
-    st.subheader("Upgrade to Pro")
-
-    st.write(
-        """
-        **Pro Subscription**
-
-        • $100/month
-
-        • Up to 100 active advertisements
-
-        • Advertisements appear on Browse Ads
-
-        • Ability to edit and delete advertisements
-        """
-    )
-
-    st.markdown("---")
-
-    st.subheader("Stripe Subscription")
-
-    st.info(
-        "Stripe payment button will go here."
-    )
-
-    if st.button("Subscribe for $100/month"):
-
-        st.success(
-            "Redirect to Stripe (Coming Soon)"
+        st.header("Business Subscription")
+        st.subheader("Current Plan")
+        st.info("Free Business Profile")
+        st.markdown("---")
+        st.subheader("Upgrade to Pro")
+        st.write(
+            """
+            **Pro Subscription**
+            • $100/month
+            • Up to 100 active advertisements
+            • Advertisements appear on Browse Ads
+            • Ability to edit and delete advertisements
+            """
+        )
+        st.markdown("---")
+        st.subheader("Stripe Subscription")
+        st.info(
+            "Stripe payment button will go here."
+        )
+        if st.button("Subscribe for $100/month"):
+            st.success(
+                "Redirect to Stripe (Coming Soon)"
+            )
+        st.markdown("---")
+        st.subheader("Subscription Status")
+        st.warning(
+            "Inactive"
         )
 
-    st.markdown("---")
 
-    st.subheader("Subscription Status")
-
-    st.warning(
-        "Inactive"
-    )
 
 
 
