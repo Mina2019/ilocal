@@ -346,8 +346,8 @@ elif page == "My Profile":
 
 
         st.success(
-            "Redirect to Stripe (Coming Soon)"
-            st.link_button(
+            "Redirect to Stripe"
+             st.link_button(
                 "Pay $100 and Unlock Ads",
                 "https://buy.stripe.com/3cIdR94mI6XyaG7aR9gIo01"    )
                 )
