@@ -306,7 +306,7 @@ elif page == "My Profile":
         "Stripe payment"
     )
     st.link_button(
-        "Pay $100 and Unlock Ads",
+        "Pay $100 and Post Ads",
         "https://buy.stripe.com/3cIdR94mI6XyaG7aR9gIo01"
     )
     st.subheader("Subscription Status")
