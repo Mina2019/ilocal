@@ -268,7 +268,21 @@ elif page == "My Profile":
 
     business_name = st.text_input("Business Name")
 
-    business_type = st.text_input("Business Type")
+    business_type = st.selectbox(
+    "Business Type",
+    [
+        "Restaurant",
+        "Home Services",
+        "Automotive",
+        "Shopping",
+        "Health",
+        "Beauty",
+        "Education",
+        "Real Estate",
+        "Sports",
+        "Other"
+    ]
+                                )
 
     phone = st.text_input("Phone")
 
@@ -313,31 +327,20 @@ elif page == "My Profile":
     # ------------------------------------------------------
 
     st.divider()
-
     st.subheader("Current Plan")
-
     st.info(
         "Free Business Profile"
     )
-
-
     st.subheader("Upgrade to Pro")
-
     st.write(
         """
         **Pro Subscription**
-
         • $100/month
-
         • Up to 100 active advertisements
-
         • Advertisements appear on Browse Ads
-
         • Ability to edit and delete advertisements
         """
     )
-
-
     st.subheader("Stripe Subscription")
     st.info(
         "Stripe payment"
