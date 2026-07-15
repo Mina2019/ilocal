@@ -85,32 +85,54 @@ if page == "Home":
             .execute()
         )
 
-        if businesses.data:
+        for business in businesses.data:
 
-            for business in businesses.data:
+            st.write(
+                "### " + business["business_name"]
+            )
 
+            if business.get("business_type"):
                 st.write(
-                    "### " + business["business_name"]
+                    "Category:",
+                    business["business_type"]
                 )
 
-                if business.get("business_type"):
-                    st.write(
-                        "Category:",
-                        business["business_type"]
+            if business.get("city"):
+                st.write(
+                    "Location:",
+                    business["city"]
+                )
+
+            if business.get("description"):
+                st.write(
+                    business["description"]
+                )
+
+            if st.button(
+                "Delete",
+                key=business["business_id"]
+            ):
+
+                try:
+
+                    supabase.table(
+                        "ilocal_businesses"
+                    ).delete().eq(
+                        "business_id",
+                        business["business_id"]
+                    ).execute()
+
+                    st.success(
+                        "Business deleted."
                     )
 
-                if business.get("city"):
-                    st.write(
-                        "Location:",
-                        business["city"]
-                    )
+                    st.rerun()
 
-                if business.get("description"):
-                    st.write(
-                        business["description"]
-                    )
+                except Exception as e:
 
-                st.divider()
+                    st.error(e)
+
+            st.divider()
 
         else:
 
