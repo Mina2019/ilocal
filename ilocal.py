@@ -339,42 +339,64 @@ elif page == "My Profile":
                 }
             ).execute()
 
-            
-            st.success("Business saved successfully.")
+            st.success(
+                "Business saved successfully."
+            )
 
         except Exception as e:
 
             st.error(e)
 
 
-        st.header("Business Subscription")
-        st.subheader("Current Plan")
-        st.info("Free Business Profile")
-        st.markdown("---")
-        st.subheader("Upgrade to Pro")
-        st.write(
-            """
-            **Pro Subscription**
-            • $100/month
-            • Up to 100 active advertisements
-            • Advertisements appear on Browse Ads
-            • Ability to edit and delete advertisements
-            """
+    # ------------------------------------------------------
+    # SUBSCRIPTION
+    # ------------------------------------------------------
+
+    st.divider()
+
+    st.subheader("Current Plan")
+
+    st.info(
+        "Free Business Profile"
+    )
+
+
+    st.subheader("Upgrade to Pro")
+
+    st.write(
+        """
+        **Pro Subscription**
+
+        • $100/month
+
+        • Up to 100 active advertisements
+
+        • Advertisements appear on Browse Ads
+
+        • Ability to edit and delete advertisements
+        """
+    )
+
+
+    st.subheader("Stripe Subscription")
+
+    st.info(
+        "Stripe payment button will go here."
+    )
+
+
+    if st.button("Subscribe for $100/month"):
+
+        st.success(
+            "Redirect to Stripe (Coming Soon)"
         )
-        st.markdown("---")
-        st.subheader("Stripe Subscription")
-        st.info(
-            "Stripe payment button will go here."
-        )
-        if st.button("Subscribe for $100/month"):
-            st.success(
-                "Redirect to Stripe (Coming Soon)"
-            )
-        st.markdown("---")
-        st.subheader("Subscription Status")
-        st.warning(
-            "Inactive"
-        )
+
+
+    st.subheader("Subscription Status")
+
+    st.warning(
+        "Inactive"
+    )
 
 
 
