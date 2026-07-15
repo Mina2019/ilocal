@@ -102,10 +102,10 @@ if page == "Home":
                 except Exception as e:
                     st.error(e)
             st.divider()
-        else:
-            st.info(
-                "No businesses registered yet."
-            )
+#        else:
+#            st.info(
+#                "No businesses registered yet."
+#            )
     except Exception as e:
         st.error(e)
 # ==========================================================
