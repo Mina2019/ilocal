@@ -38,7 +38,6 @@ page = st.sidebar.radio(
     [
         "Home",
         "Browse Ads",
-        "Post Ad",
         "My Ads",
         "My Profile",
     ]
@@ -134,46 +133,7 @@ elif page == "Browse Ads":
 
     st.info("Advertisements will appear here.")
 
-# ==========================================================
-# POST AD
-# ==========================================================
 
-elif page == "Post Ad":
-
-    st.header("Post Advertisement")
-
-    title = st.text_input("Title")
-
-    category = st.selectbox(
-        "Category",
-        [
-            "Restaurant",
-            "Home Services",
-            "Automotive",
-            "Health",
-            "Beauty",
-            "Education",
-            "Shopping",
-            "Other"
-        ]
-    )
-
-    description = st.text_area("Description")
-
-    price = st.number_input(
-        "Price",
-        min_value=0.0,
-        step=1.0
-    )
-
-    image = st.file_uploader(
-        "Photo",
-        type=["jpg", "jpeg", "png"]
-    )
-
-    if st.button("Post Advertisement"):
-
-        st.success("Advertisement submitted.")
 
 # ==========================================================
 # MY ADS
