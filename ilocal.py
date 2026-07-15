@@ -40,8 +40,7 @@ page = st.sidebar.radio(
         "Browse Ads",
         "Post Ad",
         "My Ads",
-        "My Business",
-        "Profile"
+        "My Profile",
     ]
 )
 
@@ -303,7 +302,7 @@ elif page == "My Ads":
 # MY PROFILE
 # ==========================================================
 
-elif page == "My Business":
+elif page == "My Profile":
 
     st.header("Business Profile")
 
