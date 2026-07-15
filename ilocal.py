@@ -339,19 +339,18 @@ elif page == "My Profile":
 
 
     st.subheader("Stripe Subscription")
-
     st.info(
-        "Stripe payment button will go here."
+        "Stripe payment"
     )
-
-
     if st.button("Subscribe for $100/month"):
+
 
         st.success(
             "Redirect to Stripe (Coming Soon)"
-        )
-
-
+            st.link_button(
+                "Pay $100 and Unlock Ads",
+                "https://buy.stripe.com/3cIdR94mI6XyaG7aR9gIo01"    )
+                )
     st.subheader("Subscription Status")
 
     st.warning(
