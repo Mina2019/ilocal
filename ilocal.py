@@ -342,17 +342,11 @@ elif page == "My Profile":
     st.info(
         "Stripe payment"
     )
-    if st.button("Subscribe for $100/month"):
-
-
-        st.success(
-            "Redirect to Stripe"
-             st.link_button(
-                "Pay $100 and Unlock Ads",
-                "https://buy.stripe.com/3cIdR94mI6XyaG7aR9gIo01"    )
-                )
+    st.link_button(
+        "Pay $100 and Unlock Ads",
+        "https://buy.stripe.com/3cIdR94mI6XyaG7aR9gIo01"
+    )
     st.subheader("Subscription Status")
-
     st.warning(
         "Inactive"
     )
