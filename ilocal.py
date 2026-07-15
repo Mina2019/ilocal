@@ -30,6 +30,7 @@ page = st.sidebar.radio(
     "Navigation",
     [
         "Home",
+        "Shops",
         "Browse Ads",
         "My Ads",
         "My Profile",
@@ -101,6 +102,40 @@ if page == "Home":
                 except Exception as e:
                     st.error(e)
             st.divider()
+        else:
+            st.info(
+                "No businesses registered yet."
+            )
+    except Exception as e:
+        st.error(e)
+# ==========================================================
+# SHOPS
+# ==========================================================
+elif page == "Shops":
+    st.header("🏪 Local Shops")
+    try:
+        businesses = (
+            supabase
+            .table("ilocal_businesses")
+            .select("*")
+            .execute()
+        )
+        if businesses.data:
+            for business in businesses.data:
+                st.write(
+                    "### " + business["business_name"]
+                )
+                if business.get("business_type"):
+                    st.write(
+                        "Category:",
+                        business["business_type"]
+                    )
+                if business.get("city"):
+                    st.write(
+                        "Location:",
+                        business["city"]
+                    )
+                st.divider()
         else:
             st.info(
                 "No businesses registered yet."
