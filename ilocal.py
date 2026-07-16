@@ -49,7 +49,6 @@ if page == "Home":
     col1, col2, col3 = st.columns(3)
     with col1:
         if st.button("Restaurants", use_container_width=True):
-            st.subheader("🏪 Current Local Businesses")
             businesses = (
                 supabase
                 .table("ilocal_businesses")
