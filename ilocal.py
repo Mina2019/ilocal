@@ -18,6 +18,10 @@ st.set_page_config(
     page_icon="📍",
     layout="wide"
 )
+
+if "selected_category" not in st.session_state:
+    st.session_state.selected_category = "All"
+    
 # ----------------------------------------------------------
 # Header
 # ----------------------------------------------------------
@@ -44,16 +48,77 @@ if page == "Home":
     search = st.text_input("Search")
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.button("Restaurants", use_container_width=True)
-        st.button("Home Services", use_container_width=True)
-        st.button("Automotive", use_container_width=True)
+        if st.button("Restaurants", use_container_width=True):
+            businesses = (
+                supabase
+                .table("ilocal_businesses")
+                .select("*")
+                .eq("business_type", "Restaurants")
+                .execute()
+            
+        if st.button("Home Services", use_container_width=True):
+            businesses = (
+                supabase
+                .table("ilocal_businesses")
+                .select("*")
+                .eq("business_type", "Home Services")
+                .execute()
+                
+        if st.button("Automotive", use_container_width=True):
+            businesses = (
+                supabase
+                .table("ilocal_businesses")
+                .select("*")
+                .eq("business_type", "Automotive")
+                .execute()
+               
     with col2:
-        st.button("Shopping", use_container_width=True)
-        st.button("Health", use_container_width=True)
-        st.button("Beauty", use_container_width=True)
+        if st.button("Shopping", use_container_width=True):
+            businesses = (
+                supabase
+                .table("ilocal_businesses")
+                .select("*")
+                .eq("business_type", "Shopping")
+                .execute()
+            )
+            # Display the shopping businesses here
+        
+        if st.button("Health", use_container_width=True):
+            businesses = (
+                supabase
+                .table("ilocal_businesses")
+                .select("*")
+                .eq("business_type", "Health")
+                .execute()
+            )
+            # Display the shopping businesses here        
+        if st.button("Beauty", use_container_width=True):
+            businesses = (
+                supabase
+                .table("ilocal_businesses")
+                .select("*")
+                .eq("business_type", "Beauty")
+                .execute()
+            )
+        
     with col3:
-        st.button("Education", use_container_width=True)
-        st.button("Real Estate", use_container_width=True)
+        if st.button("Education", use_container_width=True):
+            businesses = (
+                supabase
+                .table("ilocal_businesses")
+                .select("*")
+                .eq("business_type", "Education")
+                .execute()
+            )
+        
+        if st.button("Real Estate", use_container_width=True):
+            businesses = (
+                supabase
+                .table("ilocal_businesses")
+                .select("*")
+                .eq("business_type", "Real Estate")
+                .execute()
+            )        
         st.button("More", use_container_width=True)
     # ------------------------------------------------------
     # Current Businesses
