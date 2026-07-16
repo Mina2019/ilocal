@@ -126,7 +126,7 @@ if page == "Home":
     # ------------------------------------------------------
     # Current Businesses
     # ------------------------------------------------------
-st.subheader("🏪 Current Local Businesses")
+    st.subheader("🏪 Current Local Businesses")
 
 # ==========================================================
 # SHOPS
