@@ -127,55 +127,7 @@ if page == "Home":
     # Current Businesses
     # ------------------------------------------------------
     st.subheader("🏪 Current Local Businesses")
-    try:
-        businesses = (
-            supabase
-            .table("ilocal_businesses")
-            .select("*")
-            .execute()
-        )
-        for business in businesses.data:
-            st.write(
-                "### " + business["business_name"]
-            )
-            if business.get("business_type"):
-                st.write(
-                    "Category:",
-                    business["business_type"]
-                )
-            if business.get("city"):
-                st.write(
-                    "Location:",
-                    business["city"]
-                )
-            if business.get("description"):
-                st.write(
-                    business["description"]
-                )
-            if st.button(
-                "Delete",
-                key=business["business_id"]
-            ):
-                try:
-                    supabase.table(
-                        "ilocal_businesses"
-                    ).delete().eq(
-                        "business_id",
-                        business["business_id"]
-                    ).execute()
-                    st.success(
-                        "Business deleted."
-                    )
-                    st.rerun()
-                except Exception as e:
-                    st.error(e)
-            st.divider()
-#        else:
-#            st.info(
-#                "No businesses registered yet."
-#            )
-    except Exception as e:
-        st.error(e)
+
 # ==========================================================
 # SHOPS
 # ==========================================================
