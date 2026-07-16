@@ -53,7 +53,7 @@ if page == "Home":
                 supabase
                 .table("ilocal_businesses")
                 .select("*")
-                .eq("business_type", "Restaurants")
+                .eq("business_type", "Restaurant")
                 .execute()
                 )
             
