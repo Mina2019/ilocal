@@ -40,93 +40,104 @@ page = st.sidebar.radio(
         "My Profile",
     ]
 )
+
 # ==========================================================
 # HOME
 # ==========================================================
+
 if page == "Home":
+
     st.header("Welcome to iLocal")
+
+    if "category" not in st.session_state:
+        st.session_state.category = None
+
     search = st.text_input("Search")
+
     col1, col2, col3 = st.columns(3)
+
     with col1:
+
         if st.button("Restaurants", use_container_width=True):
-            businesses = (
-                supabase
-                .table("ilocal_businesses")
-                .select("*")
-                .eq("business_type", "Restaurant")
-                .execute()
-                )
-            
+            st.session_state.category = "Restaurant"
+
         if st.button("Home Services", use_container_width=True):
-            businesses = (
-                supabase
-                .table("ilocal_businesses")
-                .select("*")
-                .eq("business_type", "Home Services")
-                .execute()
-                )
-                
+            st.session_state.category = "Home Services"
+
         if st.button("Automotive", use_container_width=True):
-            businesses = (
-                supabase
-                .table("ilocal_businesses")
-                .select("*")
-                .eq("business_type", "Automotive")
-                .execute()
-                )
-               
+            st.session_state.category = "Automotive"
+
+
     with col2:
+
         if st.button("Shopping", use_container_width=True):
-            businesses = (
-                supabase
-                .table("ilocal_businesses")
-                .select("*")
-                .eq("business_type", "Shopping")
-                .execute()
-                )
-            # Display the shopping businesses here
-        
+            st.session_state.category = "Shopping"
+
         if st.button("Health", use_container_width=True):
-            businesses = (
-                supabase
-                .table("ilocal_businesses")
-                .select("*")
-                .eq("business_type", "Health")
-                .execute()
-                )
-            # Display the shopping businesses here        
+            st.session_state.category = "Health"
+
         if st.button("Beauty", use_container_width=True):
-            businesses = (
-                supabase
-                .table("ilocal_businesses")
-                .select("*")
-                .eq("business_type", "Beauty")
-                .execute()
-                )
-        
+            st.session_state.category = "Beauty"
+
+
     with col3:
+
         if st.button("Education", use_container_width=True):
-            businesses = (
-                supabase
-                .table("ilocal_businesses")
-                .select("*")
-                .eq("business_type", "Education")
-                .execute()
-                )
-        
+            st.session_state.category = "Education"
+
         if st.button("Real Estate", use_container_width=True):
-            businesses = (
-                supabase
-                .table("ilocal_businesses")
-                .select("*")
-                .eq("business_type", "Real Estate")
-                .execute()
-                )        
-        st.button("More", use_container_width=True)
-    # ------------------------------------------------------
-    # Current Businesses
-    # ------------------------------------------------------
-    st.subheader("🏪 Current Local Businesses")
+            st.session_state.category = "Real Estate"
+
+        if st.button("More", use_container_width=True):
+            st.session_state.category = None
+
+
+    st.divider()
+
+    st.subheader("🏪 Local Businesses")
+
+
+    if st.session_state.category:
+
+        businesses = (
+            supabase
+            .table("ilocal_businesses")
+            .select("*")
+            .eq(
+                "business_type",
+                st.session_state.category
+            )
+            .execute()
+        )
+
+        if businesses.data:
+
+            for business in businesses.data:
+
+                st.write(
+                    "### " + business["business_name"]
+                )
+
+                st.write(
+                    "Category:",
+                    business["business_type"]
+                )
+
+                if business.get("city"):
+                    st.write(
+                        "Location:",
+                        business["city"]
+                    )
+
+                st.divider()
+
+        else:
+
+            st.info("No shops found.")
+
+    else:
+
+        st.info("Select a category to view businesses.")
 
 # ==========================================================
 # SHOPS
