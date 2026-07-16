@@ -409,66 +409,98 @@ if menu == "Seller Confirmation":
 # ==========================================================
 # BUYER CONFIRMATION
 # ==========================================================
+
 if menu == "Buyer Confirmation":
+
     st.header("Buyer Confirmation")
+
     listing_id = st.text_input(
         "Item ID"
     )
-    if st.button("Find Listing"):
+
+
+    if st.button(
+        "Find Listing"
+    ):
+
         listing = supabase.table(
             "garage_listings"
         ).select("*").eq(
             "listing_token",
             listing_id.strip()
         ).execute().data
+
+
         if not listing:
+
             st.error(
                 "Listing not found."
             )
+
         else:
+
             st.session_state["buyer_listing_id"] = listing_id.strip()
+
             st.success(
                 "Listing found!"
             )
+
+
     # Reload listing after button clicks
-    if st.session_state.get("buyer_listing_id"):
+    if st.session_state.get(
+        "buyer_listing_id"
+    ):
+
         listing = supabase.table(
             "garage_listings"
         ).select("*").eq(
             "listing_token",
             st.session_state["buyer_listing_id"]
         ).execute().data
+
+
         if listing:
+
             item = listing[0]
+
+
             st.write(
                 f"🏠 Item: {item['title']}"
             )
+
             st.write(
                 f"💰 Price: ${item['price']}"
             )
+
             st.write(
                 f"Seller: {item['seller_email']}"
             )
+
+
             st.divider()
-            if st.button("✅ I Received the Item"):
+
+
+            if st.button(
+                "✅ I Received the Item"
+            ):
+
                 st.session_state["item_received"] = True
-            if st.session_state.get("item_received"):
+
+
+            if st.session_state.get(
+                "item_received"
+            ):
+
                 st.success(
                     "✅ Item received!"
                 )
-                if st.button(
-                    "💳 Pay Now"
-                ):
-                    st.session_state["show_payment"] = True
-                    if st.session_state.get("show_payment"):
 
-                        if st.button("💳 Pay Now"):
+                st.info(
+                    "💳 Payment is now ready."
+                )
 
-                            st.link_button(
-                                "Continue to Stripe Payment",
-                                "https://buy.stripe.com/14AeVd7yU0za8xZe3lgIo02"
-                            )
-                            else:
-                                st.error(
-                                    "Please enter all payment information."
-                            )
+
+                st.link_button(
+                    "💳 Pay with Stripe",
+                    "https://buy.stripe.com/14AeVd7yU0za8xZe3lgIo02"
+                )
