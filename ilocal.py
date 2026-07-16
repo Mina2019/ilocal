@@ -55,6 +55,7 @@ if page == "Home":
                 .select("*")
                 .eq("business_type", "Restaurants")
                 .execute()
+                )
             
         if st.button("Home Services", use_container_width=True):
             businesses = (
@@ -63,6 +64,7 @@ if page == "Home":
                 .select("*")
                 .eq("business_type", "Home Services")
                 .execute()
+                )
                 
         if st.button("Automotive", use_container_width=True):
             businesses = (
@@ -71,6 +73,7 @@ if page == "Home":
                 .select("*")
                 .eq("business_type", "Automotive")
                 .execute()
+                )
                
     with col2:
         if st.button("Shopping", use_container_width=True):
@@ -80,7 +83,7 @@ if page == "Home":
                 .select("*")
                 .eq("business_type", "Shopping")
                 .execute()
-            )
+                )
             # Display the shopping businesses here
         
         if st.button("Health", use_container_width=True):
@@ -90,7 +93,7 @@ if page == "Home":
                 .select("*")
                 .eq("business_type", "Health")
                 .execute()
-            )
+                )
             # Display the shopping businesses here        
         if st.button("Beauty", use_container_width=True):
             businesses = (
@@ -99,7 +102,7 @@ if page == "Home":
                 .select("*")
                 .eq("business_type", "Beauty")
                 .execute()
-            )
+                )
         
     with col3:
         if st.button("Education", use_container_width=True):
@@ -109,7 +112,7 @@ if page == "Home":
                 .select("*")
                 .eq("business_type", "Education")
                 .execute()
-            )
+                )
         
         if st.button("Real Estate", use_container_width=True):
             businesses = (
@@ -118,7 +121,7 @@ if page == "Home":
                 .select("*")
                 .eq("business_type", "Real Estate")
                 .execute()
-            )        
+                )        
         st.button("More", use_container_width=True)
     # ------------------------------------------------------
     # Current Businesses
